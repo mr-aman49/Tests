@@ -1,7 +1,4 @@
 {
-  "assessmentName": "MERN stack developer",
-  "duration_minutes": 20,
-  "description": " This assessment aims to evaluate your proficiency in building web applications using the MERN stack (MongoDB, Express.js, React.js, Node.js). You will be provided with a set of tasks to complete within a specified timeframe. The assessment will test your knowledge and skills in various areas, including front-end development with React.js, server-side development with Node.js and Express.js, database management with MongoDB, and integration of these technologies to create a full-stack application. You will be required to demonstrate your understanding of concepts such as state management, routing, RESTful APIs, database queries, and user authentication. The assessment will also assess your ability to design responsive user interfaces and utilize third-party libraries effectively. Successful completion of this assessment will showcase your expertise in the MERN stack and enhance your candidacy for MERN stack developer roles. Good luck!",
   "questions": [
     {
       "question": "What is the full form of DOM?",

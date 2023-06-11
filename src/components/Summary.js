@@ -1,13 +1,15 @@
 import React from 'react';
 import { Pie } from 'react-chartjs-2';
 
-const Summary = ({ user, answers, questions }) => {
+const Summary = ({ answers, questions }) => {
   // Calculate the score based on the correct answers
   const score = answers.reduce(
     (totalScore, answer, index) =>
       answer === questions[index].correctAnswer ? totalScore + 1 : totalScore,
     0
   );
+  const name = sessionStorage.getItem('name');
+  const email = sessionStorage.getItem('email');
 
   // Prepare chart data
   const chartData = {
@@ -23,8 +25,8 @@ const Summary = ({ user, answers, questions }) => {
   return (
     <div>
       <h2>Assessment Summary</h2>
-      <h3>{user.name}</h3>
-      <p>Email: {user.email}</p>
+      <h3>{name}</h3>
+      <p>Email: {email}</p>
       <h4>Selected Answers:</h4>
       <ul>
         {answers.map((answer, index) => (

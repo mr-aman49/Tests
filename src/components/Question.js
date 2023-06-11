@@ -4,12 +4,13 @@ const Question = ({ question, options, selectedAnswer, onAnswer }) => {
   const handleChange = (e) => {
     onAnswer(e.target.value);
   };
-
+  const optionsArray = options.options;
+  // console.log(optionsArray[0].name);
   return (
     <div>
       <p>{question}</p>
       <ul>
-        {options.map((option, index) => (
+        {optionsArray.map((optionsArray, index) => (
           <li key={index}>
             <label>
               <input
@@ -18,7 +19,7 @@ const Question = ({ question, options, selectedAnswer, onAnswer }) => {
                 checked={selectedAnswer === index}
                 onChange={handleChange}
               />
-              {option}
+              {optionsArray.name}
             </label>
           </li>
         ))}

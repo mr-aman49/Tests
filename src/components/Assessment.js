@@ -3,7 +3,12 @@ import questions from '../assessment.json';
 import Question from './Question';
 import Summary from './Summary';
 
-const Assessment = ({ user }) => {
+const Assessment = () => {
+  const [user, setUser] = useState({
+    name: sessionStorage.getItem('name'),
+    email: sessionStorage.getItem('email')
+
+  });
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState([]);
 
@@ -24,19 +29,26 @@ const Assessment = ({ user }) => {
   const handleFinishAssessment = () => {
     // Calculate the user's score and perform any necessary actions
     // Display summary page or perform other actions
+    let score = 0;
+  answers.forEach((userAnswer, index) => {
+    const correctAnswer = questions.questions[index].correctAnswer;
+    if (userAnswer === correctAnswer) {
+      score++;
+    }
+  });
   };
-
-  const currentQuestion = questions[currentQuestionIndex];
+  // console.log(questions);
+  const currentQuestion = questions.questions[currentQuestionIndex];
 
   return (
     <div>
       <h2>Assessment</h2>
       {currentQuestion ? (
-        <>
-          <h3>Question {currentQuestionIndex + 1}</h3>
+        <div>
+          <h3>Question {currentQuestionIndex + 1} out of 25</h3>
           <Question
             question={currentQuestion.question}
-            options={currentQuestion.options}
+            options={currentQuestion}
             selectedAnswer={answers[currentQuestionIndex]}
             onAnswer={handleAnswer}
           />
@@ -44,14 +56,16 @@ const Assessment = ({ user }) => {
             {currentQuestionIndex > 0 && (
               <button onClick={handlePrevQuestion}>Previous Question</button>
             )}
-            {currentQuestionIndex < questions.length - 1 && (
+            <br />
+            {currentQuestionIndex <= 24 && (
               <button onClick={handleNextQuestion}>Next Question</button>
             )}
-            {currentQuestionIndex === questions.length - 1 && (
+            <br />
+            {currentQuestionIndex === 24 && (
               <button onClick={handleFinishAssessment}>Finish Assessment</button>
             )}
           </div>
-        </>
+        </div>
       ) : (
         <Summary user={user} answers={answers} questions={questions} />
       )}
